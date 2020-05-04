@@ -18,11 +18,15 @@ background-size: cover;
 position:centre;
 padding: 10px;
 filter: contrast(75%);
-border-radius: 5px;
+border-radius: 8px;
+transition-property: box-shadow margin-top filter;
+transition-duration: .1s;
 box-shadow: 4px 3px 10px black;
 &:hover {
     cursor: pointer;
-    opacity: 0.8;
-    font-size: 1.05em;
+    filter: contrast(100%);
+    box-shadow: 0px 0px 0px grey;
+    margin-top: 0px;
+    margin-bottom: 5px;
 }
 `
