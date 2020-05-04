@@ -10,7 +10,9 @@ margin: 0px 400px 50px 20px;
 
 export function Menu(){
 return <MenuStyled>
-    <h2>Menu</h2>
+    {Object.entries(foods).map(([sectionName, foods]) => 
+    <>
+    <h2>{sectionName}</h2>
     <FoodGrid>
         {foods.map(food=>(
             <Food img={food.img}>
@@ -20,6 +22,8 @@ return <MenuStyled>
             </Food>
         ))}
     </FoodGrid>
+    </>
+    )}
 </MenuStyled>
 }
 
