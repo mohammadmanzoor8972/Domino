@@ -21,7 +21,7 @@ text-shadow: 2px 6px 6px black;
 export function NavBar(){
     return <NavbarStyled>
         <Logo>
-        Domino Pizza 🍕
+        Domino Pizza <span role="img" aria-label="Domino Pizza">🍕</span>
         </Logo>
     </NavbarStyled>
 }
