@@ -7,4 +7,5 @@ export const Banner = styled.div`
     background-position: middle;
     background-size: cover;
     filter: contrast(75%);
+    padding-top:50px;
 `
