@@ -29,14 +29,13 @@ const OrderContent = styled(DialogContent)`
 `;
 
 
-export function Order(){
+export function Order({orders}){
 
     return(
         <OrderStyled>
-            <OrderHeader> 
-            Order
-            </OrderHeader>
-                <OrderContent>Content</OrderContent>
+                {orders.length === 0 ? <OrderContent>
+                    Your order's looking empty...
+                </OrderContent> : <OrderContent>Found {orders.length} orders </OrderContent>}
                 <DialogFooter>
                 <ConfirmButon>Checkout</ConfirmButon>
             </DialogFooter>

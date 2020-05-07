@@ -93,11 +93,23 @@ const FoodTitle = styled(FoodLabel)`
 `;
 
 
-export function FoodDialog({ openFood, setOpenFood }) {
+export function FoodDialog({ openFood, setOpenFood, setOrders, orders }) {
   
   const closeDialog=()=>{
     setOpenFood();
   }
+
+  if(!openFood) return null;
+
+  const order = {
+    name : openFood.name
+  }
+
+  function addToOrderHandler(){
+    setOrders([...orders, order]);
+    closeDialog();
+  }
+
   return openFood ? (
     <>
       <DialogShadow onClick={closeDialog}></DialogShadow>
@@ -112,7 +124,7 @@ export function FoodDialog({ openFood, setOpenFood }) {
           </div>
         </DialogContent>
         <DialogFooter>
-         <ConfirmButon>Add to order</ConfirmButon>
+         <ConfirmButon onClick={addToOrderHandler}>Add to order</ConfirmButon>
         </DialogFooter>
       </Dialog>
     </>
