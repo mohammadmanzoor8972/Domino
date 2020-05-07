@@ -4,6 +4,8 @@ import {FoodLabel} from '../Menu/FoodGrid'
 import { pizzaRed } from '../Styles/colors';
 import { Title } from "../Styles/title";
 import { formatPrice } from "../Data/FoodData";
+import { useQuantity } from "../Hooks/useQuantity";
+import { QuantityInput } from "./QuantityInput";
 
 const Dialog = styled.div`
   width: 500px;
@@ -79,6 +81,13 @@ const DialogClose = styled.div`
     }
 `
 
+const AddtoCartButton = styled(ConfirmButon)`
+  ${({quantity}) => quantity<=0 && `
+    pointer-events: none;
+    opacity: 0.5;
+  ` }};
+`
+
 const DialogBanner = styled.div`
   min-height: 200px;
   margin-bottom: 20px;
@@ -93,17 +102,22 @@ const FoodTitle = styled(FoodLabel)`
   padding: 5px 40px; 
 `;
 
+export function getPrice(order){
+  return order.quantity * order.price;
+}
 
-export function FoodDialog({ openFood, setOpenFood, setOrders, orders }) {
-  
+export function FoodDialogContainer({ openFood, setOpenFood, setOrders, orders }) {
+  const quantity = useQuantity( openFood.quantity || 0);
+
   const closeDialog=()=>{
     setOpenFood();
   }
 
-  if(!openFood) return null;
 
   const order = {
-    ...openFood
+    ...openFood,
+    quantity : quantity.value,
+    total: quantity.value * openFood.price
   }
 
   function addToOrderHandler(){
@@ -120,14 +134,19 @@ export function FoodDialog({ openFood, setOpenFood, setOrders, orders }) {
           <FoodTitle>{openFood.name}</FoodTitle>
         </DialogBanner>
         <DialogContent>
-          <div>
-          content
-          </div>
+          <QuantityInput {...quantity}/>
         </DialogContent>
         <DialogFooter>
-  <ConfirmButon onClick={addToOrderHandler}>Add to order : {formatPrice(order.price)}</ConfirmButon>
+  <AddtoCartButton  quantity={order.quantity} onClick={addToOrderHandler}>Add to order : {formatPrice(getPrice(order))}</AddtoCartButton>
         </DialogFooter>
       </Dialog>
     </>
   ) : null
+}
+
+export function FoodDialog(props){
+  if(!props.openFood) return null;
+  return(
+    <FoodDialogContainer {...props} />
+  )
 }
