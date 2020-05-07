@@ -41,9 +41,18 @@ const OrderItem = styled.div`
     justify-content: space-between;
 `;
 
+const OrderTotal = styled.div`
+    font-weight: bold;
+`
+
 
 export function Order({orders}){
+    const subTotal = orders.reduce((total, order)=>{
+       return  total + getPrice(order);
+    },0)
 
+    const GST = subTotal * .05;
+    const grossTotal = GST+subTotal;
     return(
         <OrderStyled>
                 {orders.length === 0 ? 
@@ -61,9 +70,38 @@ export function Order({orders}){
                         </OrderItem> 
                           </OrderContainer>
                       ))}    
+                      <OrderContainer>
+                      <OrderItem>
+                          <div/> 
+                           <div>
+                            Sub Total
+                          </div>
+                          <OrderTotal>
+                          {formatPrice(subTotal)}
+                          </OrderTotal>
+                          </OrderItem>
+                          <OrderItem>
+                          <div/> 
+                           <div>
+                            GST
+                          </div>
+                          <OrderTotal>
+                          {formatPrice(GST)}
+                          </OrderTotal>
+                          </OrderItem>
+                          <OrderItem>
+                          <div/> 
+                           <div>
+                            Total
+                          </div>
+                          <OrderTotal>
+                          {formatPrice(grossTotal)}
+                          </OrderTotal>
+                          </OrderItem>
+                      </OrderContainer>
                 </OrderContent>}
                 <DialogFooter>
-                <ConfirmButon>Checkout</ConfirmButon>
+                      <ConfirmButon>Checkout</ConfirmButon>
             </DialogFooter>
             
         </OrderStyled>
