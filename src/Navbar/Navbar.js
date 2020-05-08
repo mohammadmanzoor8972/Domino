@@ -10,18 +10,29 @@ position: fixed;
 padding:10px;
 width:100%;
 z-index:999;
+height:50px;
+display: flex;
+flex-direction : column;
+
 `
 
 const Logo = styled(Title)`
 font-size: 20px;
 color:white;
 text-shadow: 2px 6px 6px black;
+background-image : url('./img/dominos-logo-241x53.png');
+background-repeat: no-repeat;
+background-size: 200px;
+height:100%;
+cursor: pointer;
+width:300px;
 `
+
 
 export function NavBar(){
     return <NavbarStyled>
-        <Logo>
-        Domino Pizza <span role="img" aria-label="Domino Pizza">🍕</span>
+        <Logo  role="img" aria-label="Domino Pizza">
         </Logo>
+        
     </NavbarStyled>
 }
