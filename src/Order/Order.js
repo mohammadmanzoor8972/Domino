@@ -50,6 +50,11 @@ const OrderTotal = styled.div`
   font-weight: bold;
 `;
 
+const OrderToppings = styled.span`
+  font-size:.7rem;
+  
+`
+
 export function Order({ orders }) {
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -57,6 +62,7 @@ export function Order({ orders }) {
 
   const GST = subTotal * 0.05;
   const grossTotal = GST + subTotal;
+  debugger;
   return (
     <OrderStyled>
       {orders.length === 0 ? (
@@ -71,6 +77,7 @@ export function Order({ orders }) {
                 <div>{order.name}</div>
                 <div>{formatPrice(getPrice(order))}</div>
               </OrderItem>
+          <OrderToppings> {order.toppings && order.toppings.filter(t=>t.checked).map(topping=>topping.name).join(",")}</OrderToppings>
             </OrderContainer>
           ))}
           <OrderContainer>
