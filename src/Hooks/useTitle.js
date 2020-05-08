@@ -6,7 +6,7 @@ export function useTitle({openFood, orders}){
         if(openFood){
             document.title = openFood.name;
         } else {
-            document.title = orders.length ==0 ? "What is for dinner ?" : `[${orders.length}] in your order`
+            document.title = orders.length === 0 ? "What is for dinner ?" : `[${orders.length}] in your order`
         }
     })
 }

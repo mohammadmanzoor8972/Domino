@@ -110,7 +110,7 @@ const FoodTitle = styled(FoodLabel)`
 const priceTopping = .25;
 export function getPrice(order) {
   const basePrice = order.toppings ? order.toppings.filter(t=>t.checked).length * priceTopping : 0;
-  return order.quantity * (order.defaultCrustPrice + basePrice);
+  return order.quantity * ((order.defaultCrustPrice || order.defaultPrice) + basePrice);
 }
 
 
@@ -137,7 +137,7 @@ export function FoodDialogContainer({
   const order = {
     ...openFood,
     quantity: quantity.value,
-    total: quantity.value * openFood.defaultCrustPrice,
+    total: quantity.value * (openFood.defaultCrustPrice || openFood.defaultPrice),
     toppings: toppings.toppings
   };
 

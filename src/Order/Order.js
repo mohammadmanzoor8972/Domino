@@ -81,7 +81,9 @@ export function Order({ orders, setOrders, setOpenFood }) {
 
   
   return (
-    <OrderStyled>
+    <OrderStyled onClick={()=>{
+
+    }}>
       {orders.length === 0 ? (
         <OrderContent>Your order's looking empty...</OrderContent>
       ) : (

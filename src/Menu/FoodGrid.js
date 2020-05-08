@@ -15,7 +15,7 @@ export const FoodLabel = styled.div`
 
 export const Food = styled(Title)`
 height: 100px;
-background-image: ${({ img }) => `url(${img});`}
+background-image: ${({ img }) => `url(${img});`};
 background-size: cover;
 position:centre;
 padding: 10px;
@@ -30,4 +30,9 @@ font-size: .8rem;
 font-weight: normal;
 font-family: Arial, Helvetica, sans-serif;
 padding:5px;
+`
+
+export const MenuStyled = styled.div`
+height: 1000px;
+margin: 0px 400px 50px 20px;
 `
