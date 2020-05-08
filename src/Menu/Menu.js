@@ -22,7 +22,7 @@ return <MenuStyled>
                 }}>
                     <FoodLabel>
                     <div>{food.name}</div> 
-                    <div>{formatPrice(food.defaultCrustPrice)}</div>
+                    <div>{categoryName=="Beverages" ? formatPrice(food.defaultPrice) : formatPrice(food.defaultCrustPrice)}</div>
                     </FoodLabel>
                 </Food>
             <FoodDescription>{food.description}</FoodDescription>

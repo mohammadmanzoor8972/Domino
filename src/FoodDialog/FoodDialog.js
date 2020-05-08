@@ -109,7 +109,7 @@ const FoodTitle = styled(FoodLabel)`
 
 const priceTopping = .25;
 export function getPrice(order) {
-  const basePrice = order.toppings.filter(t=>t.checked).length * priceTopping;
+  const basePrice = order.toppings ? order.toppings.filter(t=>t.checked).length * priceTopping : 0;
   return order.quantity * (order.defaultCrustPrice + basePrice);
 }
 
@@ -126,6 +126,9 @@ export function FoodDialogContainer({
 }) {
   const quantity = useQuantity(openFood && openFood.quantity);
   const toppings = useTopings(openFood && openFood.crust)
+  const isEditing = openFood.index > -1;
+
+ 
 
   const closeDialog = () => {
     setOpenFood();
@@ -138,24 +141,16 @@ export function FoodDialogContainer({
     toppings: toppings.toppings
   };
 
-  function addToOrderHandler() {
+  const editOrders = () =>{
+    const newOrders = [...orders];
+    newOrders[order.index] = order;
+    setOrders(newOrders);
+    closeDialog();
 
-    if(orders.filter(item=>item.name===order.name).length>0){
-      let ord = [...orders];
-      ord.forEach(item=> {
-        if(item.name===order.name){
-           item.defaultCrustPrice+=order.defaultCrustPrice;
-        item.quantity+=order.quantity;
-        item.total+=order.total;
-        }
-        });
-        setOrders([...ord]);
-    } else {
-      setOrders([order, ...orders]);
-    }
- 
+  }
 
-    
+  const addToOrderHandler =()=>{
+    setOrders([...orders, order]);
     closeDialog();
   }
 
@@ -177,9 +172,9 @@ export function FoodDialogContainer({
         <DialogFooter>
           <AddtoCartButton
             quantity={order.quantity}
-            onClick={addToOrderHandler}
+            onClick={isEditing ? editOrders :  addToOrderHandler}
           >
-            Add to order : {formatPrice(getPrice(order))}
+           {isEditing ?  "Edit order" : "Add to order"} : {formatPrice(getPrice(order))}
           </AddtoCartButton>
         </DialogFooter>
       </Dialog>
