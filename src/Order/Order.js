@@ -9,6 +9,7 @@ import {
 } from "../FoodDialog/FoodDialog";
 import { formatPrice } from "../Data/FoodData";
 import { pizzaRed } from "../Styles/colors";
+const Database = window.firebase.database();
 
 const OrderStyled = styled.div`
   right: 0px;
@@ -74,6 +75,36 @@ const OrderClose = styled.span`
   };
 `
 
+function placeOder(orders, {email, displayName}){
+  const newOrderRef = Database.ref('orders').push();
+  const newOrders = orders.map(order=> {
+    return Object.keys(order).reduce((acc, orderKey)=> {
+      if(!order[orderKey]){
+        return acc;
+      };
+
+      if(orderKey === "toppings"){
+        return {
+          ...acc,
+          [orderKey]: order[orderKey].filter(({checked})=> checked).map(({name})=>name)
+        }
+      }
+
+     return {
+       ...acc,
+       [orderKey]: order[orderKey]
+     } 
+
+    },{});
+  });
+
+  newOrderRef.set({
+    order: newOrders,
+    email,
+    displayName
+  })
+}
+
 export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login, loggedIn }) {
   
   const subTotal = orders.reduce((total, order) => {
@@ -136,7 +167,7 @@ export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login
       <DialogFooter>
         <ConfirmButon onClick={()=>{
           if(loggedIn){
-
+            placeOder(orders, loggedIn);
           } else {
             login();
           }

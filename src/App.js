@@ -11,7 +11,6 @@ import { useTitle } from "./Hooks/useTitle";
 import { useToogle } from "./Hooks/useToggle";
 import { useAuthentication } from "./Hooks/useAuthentication";
 
-const Database = window.firebase.database();
 
 function App() {
   const openFood = useOpenFood();
