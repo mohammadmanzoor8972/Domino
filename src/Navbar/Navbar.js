@@ -12,7 +12,8 @@ width:100%;
 z-index:999;
 height:50px;
 display: flex;
-flex-direction : column;
+flex-direction: row;
+    justify-content: space-between;
 
 `
 
@@ -28,11 +29,35 @@ cursor: pointer;
 width:300px;
 `
 
+const Cart = styled.div`
+    width: 50px;
+    height: 36px;
+    background-image: url(https://img.icons8.com/cotton/64/000000/mine-cart.png);
+    background-repeat: no-repeat;
+    background-size: 39px;
+    background-position: 2px -4px;
+    cursor: pointer;
+    margin-right:10px;
+`
 
-export function NavBar(){
+const CartBadge = styled.span`
+position: absolute;
+    background-color: #fff;
+    border-radius: 5px;
+    width: 22px;
+    font-size: .8rem;
+    text-align: center;
+    bottom: 47px;
+    right: 47px;
+    color: ${pizzaRed};
+`
+
+export function NavBar({setToggle, toggle, orders}){
     return <NavbarStyled>
-        <Logo  role="img" aria-label="Domino Pizza">
-        </Logo>
+        <Logo  role="img" aria-label="Domino Pizza"/>
+        <Cart onClick={()=>{setToggle(!toggle)}}>
+<CartBadge>{orders.length}</CartBadge>
+        </Cart>
         
     </NavbarStyled>
 }

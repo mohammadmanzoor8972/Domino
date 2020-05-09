@@ -10,20 +10,21 @@ import { Topings } from "./Toppings";
 import { useTopings } from "../Hooks/useTopings";
 
 const Dialog = styled.div`
-  width: 500px;
+  width: 350px;
   background-color: white;
   position: fixed;
   top: 75px;
   z-index: 5;
   margin: 0px auto;
-  max-height: calc(100% - 100px);
-  left: calc(50% - 250px);
+  max-height: calc(100% - 175px);
+  left: calc(50% - 175px);
   box-shadow: 4px 4px 15px black;
   border-radius: 5px;
   overflow: auto;
   display: flex;
   flex-direction: column;
 
+  z-index:9999;
 
 `;
 
@@ -63,7 +64,7 @@ const DialogShadow = styled.div`
   top: 0px;
   background-color: black;
   opacity: 0.7;
-  z-index: 4;
+  z-index: 9999;
 `;
 
 const DialogClose = styled.div`

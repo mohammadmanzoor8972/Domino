@@ -64,7 +64,17 @@ const OrderToppings = styled.span`
 
 `
 
-export function Order({ orders, setOrders, setOpenFood }) {
+const OrderClose = styled.span`
+  font-size:.9rem;
+  position: absolute;
+  right: 10px;
+  cursor: pointer;
+  &:hover{
+    opacity: .5;
+  };
+`
+
+export function Order({ orders, setOrders, setOpenFood, toggle, setToggle }) {
   
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -79,13 +89,16 @@ export function Order({ orders, setOrders, setOpenFood }) {
     setOrders(newOrder);
   }
 
+  if(!toggle){
+    return null;
+  }
   
   return (
     <OrderStyled onClick={()=>{
 
     }}>
       {orders.length === 0 ? (
-        <OrderContent>Your order's looking empty...</OrderContent>
+        <OrderContent>Your order's looking empty... <OrderClose onClick={()=>{setToggle(false)}}>❌</OrderClose></OrderContent>
       ) : (
         <OrderContent>
           <OrderContainer>Your order are : </OrderContainer>{" "}
