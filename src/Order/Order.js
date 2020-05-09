@@ -74,7 +74,7 @@ const OrderClose = styled.span`
   };
 `
 
-export function Order({ orders, setOrders, setOpenFood, toggle, setToggle }) {
+export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login, loggedIn }) {
   
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -103,7 +103,7 @@ export function Order({ orders, setOrders, setOpenFood, toggle, setToggle }) {
         <OrderContent>
           <OrderContainer>Your order are : <OrderClose onClick={()=>{setToggle(false)}}>❌</OrderClose></OrderContainer>{" "}
           {orders.map((order,index) => (
-            <OrderContainer>
+            <OrderContainer key={`${order.name}-${index}`}>
               <OrderItem>
                 <div>{order.quantity}</div>
                 <div onClick={()=>{setOpenFood({...order, index})}}>{order.name}</div>
@@ -134,7 +134,13 @@ export function Order({ orders, setOrders, setOpenFood, toggle, setToggle }) {
         </OrderContent>
       )}
       <DialogFooter>
-        <ConfirmButon>Checkout</ConfirmButon>
+        <ConfirmButon onClick={()=>{
+          if(loggedIn){
+
+          } else {
+            login();
+          }
+        }}>Checkout</ConfirmButon>
       </DialogFooter>
     </OrderStyled>
   );

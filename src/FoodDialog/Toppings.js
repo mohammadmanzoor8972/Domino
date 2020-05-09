@@ -23,7 +23,7 @@ export function Topings({toppings, checkTopping}){
     return(
     <TopingGrid>
 
-        {toppings && toppings.map((topping, i)=>(<TopingCheckboxLabel>
+        {toppings && toppings.map((topping, i)=>(<TopingCheckboxLabel key={topping+"_"+i}>
             <TopingCheckbox type="checkbox" checked={topping.checked} onClick={()=>{
                 checkTopping(i);
             }}/>

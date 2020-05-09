@@ -9,32 +9,25 @@ import { useOpenFood } from "./Hooks/useOpenFood";
 import { useOrders } from "./Hooks/useOrders";
 import { useTitle } from "./Hooks/useTitle";
 import { useToogle } from "./Hooks/useToggle";
+import { useAuthentication } from "./Hooks/useAuthentication";
 
-
-const auth = window.firebase.auth();
-const provider = new window.firebase.auth.GoogleAuthProvider();
-/*
-auth.signInWithPopup(provider);
-auth.onAuthStateChanged((user)=>{
-console.log(user);
-}, (error)=>{
-  console.log(error);
-});*/
+const Database = window.firebase.database();
 
 function App() {
   const openFood = useOpenFood();
   const orders = useOrders();
   const toggle = useToogle(false);
+  const login = useAuthentication();
 
   useTitle({...openFood, ...orders});
   return (
     <>
       <GlobalStyle />
-      <NavBar {...toggle} {...orders}/>
+      <NavBar {...toggle} {...orders} {...login}/>
       <Banner/>
       <FoodDialog {...openFood} {...orders}/>
       <Menu {...openFood} {...toggle}/>
-      <Order {...orders} {...openFood} {...toggle}/>
+      <Order {...orders} {...openFood} {...toggle} {...login}/>
     </>
   );
 }
