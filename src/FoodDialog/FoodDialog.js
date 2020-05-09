@@ -9,7 +9,7 @@ import { QuantityInput } from "./QuantityInput";
 import { Topings } from "./Toppings";
 import { useTopings } from "../Hooks/useTopings";
 
-const Dialog = styled.div`
+export const Dialog = styled.div`
   width: 350px;
   background-color: white;
   position: fixed;
@@ -57,7 +57,7 @@ export const ConfirmButon = styled(Title)`
   }
 `;
 
-const DialogShadow = styled.div`
+export const DialogShadow = styled.div`
   position: fixed;
   height: 100%;
   width: 100%;
@@ -67,7 +67,7 @@ const DialogShadow = styled.div`
   z-index: 9999;
 `;
 
-const DialogClose = styled.div`
+export const DialogClose = styled.div`
   padding: 5px;
   font-size: 20px;
   position: absolute;
@@ -85,7 +85,7 @@ const DialogClose = styled.div`
   }
 `;
 
-const AddtoCartButton = styled(ConfirmButon)`
+export const AddtoCartButton = styled(ConfirmButon)`
   ${({ quantity }) =>
     quantity <= 0 &&
     `

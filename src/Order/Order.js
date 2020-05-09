@@ -105,7 +105,7 @@ function placeOder(orders, {email, displayName}){
   })
 }
 
-export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login, loggedIn }) {
+export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login, loggedIn, setOpenOrderDialog }) {
   
   const subTotal = orders.reduce((total, order) => {
     return total + getPrice(order);
@@ -164,15 +164,16 @@ export function Order({ orders, setOrders, setOpenFood, toggle, setToggle, login
           </OrderContainer>
         </OrderContent>
       )}
-      <DialogFooter>
+     {orders.length && <DialogFooter>
         <ConfirmButon onClick={()=>{
           if(loggedIn){
+            setOpenOrderDialog(true);
             placeOder(orders, loggedIn);
           } else {
             login();
           }
         }}>Checkout</ConfirmButon>
-      </DialogFooter>
+      </DialogFooter>}
     </OrderStyled>
   );
 }
