@@ -12,7 +12,7 @@ import { pizzaRed } from "../Styles/colors";
 
 const OrderStyled = styled.div`
   right: 0px;
-  top: 72px;
+  top: 50px;
   position: fixed;
   width: 350px;
   height: calc(100% - 72px);
@@ -101,7 +101,7 @@ export function Order({ orders, setOrders, setOpenFood, toggle, setToggle }) {
         <OrderContent>Your order's looking empty... <OrderClose onClick={()=>{setToggle(false)}}>❌</OrderClose></OrderContent>
       ) : (
         <OrderContent>
-          <OrderContainer>Your order are : </OrderContainer>{" "}
+          <OrderContainer>Your order are : <OrderClose onClick={()=>{setToggle(false)}}>❌</OrderClose></OrderContainer>{" "}
           {orders.map((order,index) => (
             <OrderContainer>
               <OrderItem>

@@ -10,7 +10,7 @@ position: fixed;
 padding:10px;
 width:100%;
 z-index:999;
-height:50px;
+height:30px;
 display: flex;
 flex-direction: row;
     justify-content: space-between;
@@ -23,7 +23,7 @@ color:white;
 text-shadow: 2px 6px 6px black;
 background-image : url('./img/dominos-logo-241x53.png');
 background-repeat: no-repeat;
-background-size: 200px;
+background-size: 100px;
 height:100%;
 cursor: pointer;
 width:300px;
@@ -41,14 +41,14 @@ const Cart = styled.div`
 `
 
 const CartBadge = styled.span`
-position: absolute;
+    position: absolute;
     background-color: #fff;
     border-radius: 5px;
     width: 22px;
     font-size: .8rem;
     text-align: center;
-    bottom: 47px;
-    right: 47px;
+    bottom: 25px;
+    right: 55px;
     color: ${pizzaRed};
 `
 

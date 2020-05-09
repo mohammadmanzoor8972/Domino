@@ -5,7 +5,7 @@ const defaultWidth = window.document.body.scrollWidth;
 
 export const FoodGrid = styled.div`
   display: grid;
-  grid-template-columns: ${defaultWidth<600 ? '1fr 1fr' : '1fr 1fr 1fr'};
+  grid-template-columns: ${defaultWidth<600 ? '1fr 1fr' : '1fr 1fr 1fr 1fr'};
   gap: 20px;
   margin: 5px;
 `;
@@ -36,5 +36,6 @@ padding:5px;
 
 export const MenuStyled = styled.div`
 height: 1000px;
-margin: ${defaultWidth>600 ? '0px 400px 50px 20px':'5px'};
+margin: 5px;
+padding: 10px;
 `

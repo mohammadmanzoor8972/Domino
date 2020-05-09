@@ -16,7 +16,7 @@ const Dialog = styled.div`
   top: 75px;
   z-index: 5;
   margin: 0px auto;
-  max-height: calc(100% - 175px);
+  max-height: calc(100% - 30vh);
   left: calc(50% - 175px);
   box-shadow: 4px 4px 15px black;
   border-radius: 5px;
