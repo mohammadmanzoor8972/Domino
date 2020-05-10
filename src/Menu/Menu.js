@@ -10,6 +10,9 @@ import {
 } from "./FoodGrid";
 
 export function Menu({ setOpenFood }) {
+
+  
+
   return (
     <MenuStyled>
       {DominoData.map(({ categoryName, data }) => (

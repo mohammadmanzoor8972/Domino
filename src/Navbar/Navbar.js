@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { pizzaRed } from "../Styles/colors";
 import { Title } from "../Styles/title";
+import { withToolTip } from "../HOC/withTooltips";
 
 const NavbarStyled = styled.div`
   background-color: ${pizzaRed};
@@ -25,7 +26,7 @@ const Logo = styled(Title)`
   background-size: 100px;
   height: 100%;
   cursor: pointer;
-  width: 300px;
+  width: 100px;
 `;
 
 const Cart = styled.div`
@@ -64,7 +65,16 @@ const LoginButton = styled.span`
   cursor: pointer;
 `;
 
+const UserLogin = ()=>{
+  return (
+  <i className="fa fa-user" tooltip="test"></i>
+  )
+}
+
 export function NavBar({ setToggle, toggle, orders, login, logout, loggedIn }) {
+
+  const MyComp = withToolTip(UserLogin, {...loggedIn, text:loggedIn ? loggedIn.displayName :""});
+
   return (
     <NavbarStyled>
       <Logo role="img" aria-label="Domino Pizza" />
@@ -72,8 +82,11 @@ export function NavBar({ setToggle, toggle, orders, login, logout, loggedIn }) {
         <UserStatus>
           {loggedIn ? (
             <>
-              {loggedIn.displayName}
-              <LoginButton onClick={logout}> Logout</LoginButton>
+               <MyComp {...loggedIn} text={loggedIn.displayName}/>{" "}
+              {" | "}
+              <LoginButton onClick={logout}>
+                <i className="fa fa-sign-out"></i>
+              </LoginButton>
             </>
           ) : (
             <LoginButton onClick={login}>Sign / Signup</LoginButton>
