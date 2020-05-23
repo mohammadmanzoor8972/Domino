@@ -29,6 +29,12 @@ const DisplayName = styled.span`
           <span
             onMouseOver={mouseOver}
             onMouseOut={mouseOut}
+            onClick={()=>{
+              setIsShow(true);
+            setTimeout(()=>{
+              setIsShow(false);
+            },2000)
+            }}
             style={{ cursor: "pointer" }}
           >
             <Component {...props}/>

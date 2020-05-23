@@ -13,7 +13,6 @@ import { useAuthentication } from "./Hooks/useAuthentication";
 import { OrderDialog } from "./Order/OrderDialog";
 import { useOrderDialog } from "./Hooks/useOrderDialog";
 
-
 function App() {
   const openFood = useOpenFood();
   const orders = useOrders();
